@@ -5,11 +5,12 @@ import { dijkstra } from '../../lib/algorithms/pathfinding/dijkstra'
 import { aStar } from '../../lib/algorithms/pathfinding/aStar'
 import { createGrid } from '../../utils/helpers'
 import { START_TILE_CONFIGURATION, END_TILE_CONFIGURATION } from '../../utils/constants'
+import { GridType, TileType } from '../../utils/types'
 
 describe('Pathfinding Algorithms', () => {
-  let grid: any
-  let startTile: any
-  let endTile: any
+  let grid: GridType
+  let startTile: TileType
+  let endTile: TileType
 
   beforeEach(() => {
     grid = createGrid(START_TILE_CONFIGURATION, END_TILE_CONFIGURATION)
