@@ -54,10 +54,6 @@ export function Tile({
   } else if (isTraversed) {
     tileTyleStyle = TRAVERSED_TILE_STYLE;
     inlineStyle = { backgroundColor: '#06b6d4' }; // cyan-500
-  } else if (isPath) {
-    tileTyleStyle = PATH_TILE_STYLE;
-  } else if (isTraversed) {
-    tileTyleStyle = TRAVERSED_TILE_STYLE;
   } else {
     tileTyleStyle = TILE_STYLE;
   }
