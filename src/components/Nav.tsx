@@ -85,7 +85,11 @@ export function Nav({
   };
 
   return (
-    <div className="flex items-center justify-between min-h-[4.5rem] border-b shadow-gray-600 px-6">
+    <nav 
+      role="navigation"
+      aria-label="Pathfinding visualizer controls"
+      className="flex items-center justify-between min-h-[4.5rem] border-b shadow-gray-600 px-6"
+    >
       <div className="flex items-center">
         <h1 className="text-3xl font-bold text-white">
           Pathfinding Visualizer
@@ -125,6 +129,6 @@ export function Nav({
           handlerRunVisualizer={handlerRunVisualizer}
         />
       </div>
-    </div>
+    </nav>
   );
 }

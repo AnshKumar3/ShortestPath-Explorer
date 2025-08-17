@@ -44,6 +44,8 @@ export function Grid({
 
   return (
     <div
+      role="grid"
+      aria-label="Pathfinding visualization grid"
       className={twMerge(
         // Base classes
         "flex items-center flex-col justify-center border-sky-300 mt-10",
@@ -58,7 +60,7 @@ export function Grid({
       )}
     >
       {grid.map((r, rowIndex) => (
-        <div key={rowIndex} className="flex">
+        <div key={rowIndex} className="flex" role="row">
           {r.map((tile, tileIndex) => {
             const { row, col, isEnd, isStart, isPath, isTraversed, isWall } =
               tile;

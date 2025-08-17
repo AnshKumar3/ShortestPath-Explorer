@@ -13,8 +13,12 @@ function App() {
       <TileProvider>
         <SpeedProvider>
           <div className="h-screen w-screen flex flex-col bg-[#131416]">
-            <Nav isVisualizationRunningRef={isVisualizationRunningRef} />
-            <Grid isVisualizationRunningRef={isVisualizationRunningRef} />
+            <header>
+              <Nav isVisualizationRunningRef={isVisualizationRunningRef} />
+            </header>
+            <main role="main" aria-label="Pathfinding visualizer grid">
+              <Grid isVisualizationRunningRef={isVisualizationRunningRef} />
+            </main>
           </div>
         </SpeedProvider>
       </TileProvider>

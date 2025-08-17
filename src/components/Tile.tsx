@@ -62,8 +62,22 @@ export function Tile({
     row === MAX_ROWS - 1 ? "border-b" : col === 0 ? "border-l" : "";
   const edgeStyle = row === MAX_ROWS - 1 && col === 0 ? "border-l" : "";
 
+  // Generate aria-label based on tile state
+  const getAriaLabel = () => {
+    let label = `Tile at row ${row + 1}, column ${col + 1}`;
+    if (isStart) label += ", start position";
+    else if (isEnd) label += ", end position";
+    else if (isWall) label += ", wall";
+    else if (isPath) label += ", part of solution path";
+    else if (isTraversed) label += ", explored during search";
+    return label;
+  };
+
   return (
     <div
+      role="gridcell"
+      aria-label={getAriaLabel()}
+      tabIndex={0}
       className={twMerge(tileTyleStyle, borderStyle, edgeStyle)}
       style={inlineStyle}
       id={`${row}-${col}`}
