@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ main ]
 
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
 jobs:
   test:
     name: Test
@@ -92,7 +97,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: ghcr.io/${{ github.repository }}
+        images: ghcr.io/${{ github.repository_owner }}/pathfinding-visualizer
         tags: |
           type=ref,event=branch
           type=ref,event=pr
@@ -125,10 +130,10 @@ jobs:
         username: ${{ secrets.STAGING_USER }}
         key: ${{ secrets.STAGING_SSH_KEY }}
         script: |
-          docker pull ghcr.io/${{ github.repository }}:develop
+          docker pull ghcr.io/${{ github.repository_owner }}/pathfinding-visualizer:develop
           docker stop pathfinding-visualizer-staging || true
           docker rm pathfinding-visualizer-staging || true
-          docker run -d --name pathfinding-visualizer-staging -p 3001:80 --restart unless-stopped ghcr.io/${{ github.repository }}:develop
+          docker run -d --name pathfinding-visualizer-staging -p 3001:80 --restart unless-stopped ghcr.io/${{ github.repository_owner }}/pathfinding-visualizer:develop
 
   deploy-production:
     name: Deploy to Production
@@ -145,10 +150,10 @@ jobs:
         username: ${{ secrets.PRODUCTION_USER }}
         key: ${{ secrets.PRODUCTION_SSH_KEY }}
         script: |
-          docker pull ghcr.io/${{ github.repository }}:latest
+          docker pull ghcr.io/${{ github.repository_owner }}/pathfinding-visualizer:latest
           docker stop pathfinding-visualizer || true
           docker rm pathfinding-visualizer || true
-          docker run -d --name pathfinding-visualizer -p 3000:80 --restart unless-stopped ghcr.io/${{ github.repository }}:latest
+          docker run -d --name pathfinding-visualizer -p 3000:80 --restart unless-stopped ghcr.io/${{ github.repository_owner }}/pathfinding-visualizer:latest
 
   lighthouse:
     name: Lighthouse CI
