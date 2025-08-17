@@ -119,7 +119,7 @@ jobs:
     name: Deploy to Staging
     runs-on: ubuntu-latest
     needs: [docker]
-    if: github.ref == 'refs/heads/develop'
+    if: false  # Disabled until staging server is configured
     environment: staging
     
     steps:
@@ -139,7 +139,7 @@ jobs:
     name: Deploy to Production
     runs-on: ubuntu-latest
     needs: [docker]
-    if: github.ref == 'refs/heads/main'
+    if: false  # Disabled until production server is configured
     environment: production
     
     steps:
