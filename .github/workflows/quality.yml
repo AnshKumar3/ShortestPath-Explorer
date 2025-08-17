@@ -30,13 +30,7 @@ jobs:
       run: npm run lint -- --format=json --output-file=eslint-report.json || true
       
     - name: Run tests with coverage
-      run: npm test -- --coverage
-      
-    - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: npm run test:ci
         
   performance-budget:
     name: Performance Budget
