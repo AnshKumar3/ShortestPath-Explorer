@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  pathfinding-visualizer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    container_name: pathfinding-visualizer
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+
+  # Development service (optional)
+  pathfinding-visualizer-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "5173:5173"
+    container_name: pathfinding-visualizer-dev
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    profiles:
+      - dev
